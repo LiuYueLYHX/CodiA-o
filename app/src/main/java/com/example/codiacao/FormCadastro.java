@@ -14,13 +14,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import main.java.com.example.entities.Usuario;
+
 public class FormCadastro extends AppCompatActivity {
 
     //Variáveis de Cadastro
     private TextInputEditText edit_name;
     private TextInputEditText edit_email;
-    private TextInputEditText edit_senha;
+    private TextInputEditText edit_password;
     private AppCompatButton button_CadastroUsuario;
+    public static Usuario usuarioCadastrado = null;
+
 
 
     @Override
@@ -31,7 +35,7 @@ public class FormCadastro extends AppCompatActivity {
 
         edit_name = findViewById(R.id.edit_name);
         edit_email = findViewById(R.id.edit_email);
-        edit_senha = findViewById(R.id.edit_senha);
+        edit_password = findViewById(R.id.edit_password);
 
         button_CadastroUsuario = findViewById(R.id.button_CadastroUsuario);
 
@@ -40,18 +44,34 @@ public class FormCadastro extends AppCompatActivity {
             public void onClick(View v) {
                 String usuarioName = edit_name.getText().toString();
                 String usuarioEmail = edit_email.getText().toString();
-                String usuarioSenha = edit_senha.getText().toString();
+                String usuarioPassword = edit_password.getText().toString();
                 try{
                     if(usuarioName.isEmpty()){
                         edit_name.setError("Digite seu nome");
                         return;
                     }
+                    if(usuarioEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(usuarioEmail).matches()){
+                        edit_email.setError("Digite um email válido");
+                        return;
+                    }
+
+                    if(usuarioPassword.isEmpty() || usuarioPassword.length() < 6){
+                        edit_password.setError("Senha deve ter pelo menos 6 caracteres");
+                        return;
+                    }
                     // Usuario usuario = new Usuario(
                     //     usuarioName,
                     //     usuarioEmail,
-                    //     usuarioSenha
+                    //     usuarioPassword
                     // );
+                    usuarioCadastrado = new Usuario(usuarioName, usuarioEmail, usuarioPassword);
+
+                    Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
                     // registerUsuario(usuario);
+                    Intent intent = new Intent(FormCadastro.this, FormLogin.class);
+                    startActivity(intent);
+                    finish();
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
