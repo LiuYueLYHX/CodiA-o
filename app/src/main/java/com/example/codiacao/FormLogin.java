@@ -3,23 +3,26 @@ package com.example.codiacao;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import main.java.com.example.entities.Usuario;
+import com.example.entities.Usuario;
 
 public class FormLogin extends AppCompatActivity {
 
     private TextView text_tela_de_cadastro;
-    private TextInputEditText edit_email;
-    private TextInputEditText edit_password;
+    private EditText edit_email;
+    private EditText edit_password;
     private AppCompatButton bt_entrar;
 
     @Override
@@ -32,6 +35,7 @@ public class FormLogin extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         edit_email = findViewById(R.id.edit_email);
         edit_password = findViewById(R.id.edit_password);
         bt_entrar = findViewById(R.id.bt_entrar);

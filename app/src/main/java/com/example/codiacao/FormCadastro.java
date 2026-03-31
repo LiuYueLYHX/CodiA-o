@@ -1,7 +1,9 @@
 package com.example.codiacao;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,14 +16,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import main.java.com.example.entities.Usuario;
+import com.example.entities.Usuario;
 
 public class FormCadastro extends AppCompatActivity {
 
     //Variáveis de Cadastro
-    private TextInputEditText edit_name;
-    private TextInputEditText edit_email;
-    private TextInputEditText edit_password;
+    private EditText edit_name;
+    private EditText edit_email;
+    private EditText edit_password;
     private AppCompatButton button_CadastroUsuario;
     public static Usuario usuarioCadastrado = null;
 
@@ -50,7 +52,7 @@ public class FormCadastro extends AppCompatActivity {
                         edit_name.setError("Digite seu nome");
                         return;
                     }
-                    if(usuarioEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(usuarioEmail).matches()){
+                    if(usuarioEmail.isEmpty()){
                         edit_email.setError("Digite um email válido");
                         return;
                     }
@@ -64,9 +66,8 @@ public class FormCadastro extends AppCompatActivity {
                     //     usuarioEmail,
                     //     usuarioPassword
                     // );
-                    usuarioCadastrado = new Usuario(usuarioName, usuarioEmail, usuarioPassword);
+                    usuarioCadastrado = new Usuario(usuarioName, usuarioPassword);
 
-                    Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
                     // registerUsuario(usuario);
                     Intent intent = new Intent(FormCadastro.this, FormLogin.class);
