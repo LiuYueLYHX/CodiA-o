@@ -25,7 +25,9 @@ public class FormCadastro extends AppCompatActivity {
     private EditText edit_email;
     private EditText edit_password;
     private AppCompatButton button_CadastroUsuario;
-    public static Usuario usuarioCadastrado = null;
+
+    private TextView text_tela_login;
+    public static Usuario usuarioCadastrado;
 
 
 
@@ -38,6 +40,8 @@ public class FormCadastro extends AppCompatActivity {
         edit_name = findViewById(R.id.edit_name);
         edit_email = findViewById(R.id.edit_email);
         edit_password = findViewById(R.id.edit_password);
+
+        text_tela_login = findViewById(R.id.text_tela_login);
 
         button_CadastroUsuario = findViewById(R.id.button_CadastroUsuario);
 
@@ -61,12 +65,8 @@ public class FormCadastro extends AppCompatActivity {
                         edit_password.setError("Senha deve ter pelo menos 6 caracteres");
                         return;
                     }
-                    // Usuario usuario = new Usuario(
-                    //     usuarioName,
-                    //     usuarioEmail,
-                    //     usuarioPassword
-                    // );
-                    usuarioCadastrado = new Usuario(usuarioName, usuarioPassword);
+
+                    usuarioCadastrado = new Usuario(usuarioEmail, usuarioPassword);
 
 
                     // registerUsuario(usuario);
@@ -76,6 +76,14 @@ public class FormCadastro extends AppCompatActivity {
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        text_tela_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormCadastro.this,FormLogin.class);
+                startActivity(intent);
             }
         });
     }

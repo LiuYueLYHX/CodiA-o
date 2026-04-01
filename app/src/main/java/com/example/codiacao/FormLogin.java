@@ -46,20 +46,29 @@ public class FormLogin extends AppCompatActivity {
             String senha = edit_password.getText().toString().trim();
 
             if (email.isEmpty()) {
-                edit_email.setError("请输入邮箱");
+                edit_email.setError("Digita seu Email");
                 return;
             }
 
             if (senha.isEmpty()) {
-                edit_password.setError("请输入密码");
+                edit_password.setError("Digita sua Senha");
                 return;
             }
             Usuario usuario = FormCadastro.usuarioCadastrado;
-            if (usuario != null && usuario.getEmail().equals(email) && usuario.getPassword().equals(senha)) {
-                Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+            if (usuario != null &&
+                    usuario.getEmail().equals(email) &&
+                    usuario.getPassword().equals(senha)) {
+                Toast.makeText(this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FormLogin.this,TelaPrincipal.class);
+                startActivity(intent);
             } else {
-                Toast.makeText(this, "邮箱或密码错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show();
             }
+//            if (usuario != null && usuario.getEmail().equals(email) && usuario.getPassword().equals(senha)) {
+//                Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(this, "Sua senha ou Email teve está errado", Toast.LENGTH_SHORT).show();
+//            }
         });
         text_tela_de_cadastro.setOnClickListener(new View.OnClickListener() {
             @Override

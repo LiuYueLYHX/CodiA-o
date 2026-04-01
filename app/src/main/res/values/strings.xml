@@ -2,5 +2,6 @@
     <string name="app_name">Codiacao</string>
     <string name="entrar">Entrar</string>
     <string name="text_cadastro">Crie uma conta cliclando aqui</string>
+    <string name="text_voltar_login">Voltar para Tela de Login</string>
     <string name="title_cadastro">Cadastre-se</string>
 </resources>
